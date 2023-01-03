@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ### Edit `.env` file
 Rename `.env_temp` to `.env` and input necessary information as shown in the comments.
 
-- Notes:
+Notes:
 * For RTSP url(`RTSP_URL`), port is usually 554. There should be seperate RTSP port setting on the camera setting page.
 * `IP_CAM_BASE_URL` is used to call REST APIs to camera(ex. Pan, Tilt). Leave it blank unless you know the API, and python script edit is required)
 
