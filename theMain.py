@@ -28,18 +28,19 @@ url_base = "http://"+USER_ID+":"+USER_PWD+"@"+IP_CAM_BASE_URL
 
 
 while True:
-    #delete early file before start recording
+    # delete earliest dated file before start recording
     fileOp = fileOperatorClass()
     if(fileOp.get_first_added_file(RECORDING_PATH) != None):
         fileOp.delete_file()
 
 
-    #get time for file name
+    # get time for file name
     dt_string = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
     print("date and time =", dt_string)
 
 
-    #adjust pan/tilt specific to panasonic camera(Panasonic BL-C131A)
+    # Panasonic BL-C131A specific codes
+    # adjust pan/tilt specific to panasonic camera(Panasonic BL-C131A)
     if(len(IP_CAM_BASE_URL)>0):
         import requests
         url = url_base+"/nphControlCamera"
@@ -73,10 +74,12 @@ while True:
                             "PresetOperation":"Move",
                             "Language":0}
 
+        # Panasonic BL-C131A specific codes
         # center camera for panasonic camera
         response = requests.post(url, body_center, headers)
         print("Center Camera - Status Code: ", response.status_code)
 
+        # Panasonic BL-C131A specific codes
         # darken image for panasonic camera
         for x in range(0, 4):
             time.sleep(0.2)
@@ -85,6 +88,7 @@ while True:
 
 
     # start ffmpeg recording for FFMPEG_RECORDING_LEN seconds
+    # for Panasonic BL-C131A specific example:
     # rtsp://id:pwd@rtsp_url/nphMpeg4/nil-320x240
     input_url = 'rtsp://'+USER_ID+":"+USER_PWD+"@"+RTSP_URL 
     file_name = RECORDING_PATH+"/"+dt_string+recording_file_suffix
