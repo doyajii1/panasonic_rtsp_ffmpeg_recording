@@ -1,0 +1,4 @@
+#default osx path
+.DS_Store
+#ignore sensitive env information
+.env

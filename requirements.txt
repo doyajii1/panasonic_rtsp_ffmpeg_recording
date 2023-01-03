@@ -1,0 +1,6 @@
+### Requirements without specific version ###
+requests
+
+### Requirements with specific version ###
+ffmpeg-python==0.2.0
+python-dotenv==0.21.0
